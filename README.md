@@ -4,7 +4,7 @@ Sistema automatizado en **Python** para el seguimiento y análisis de tendencias
 
 ## ¿Qué hace este proyecto?
 * **Web Scraping:** Extrae los últimos titulares de *Hacker News*.
-* **Inteligencia Artificial (NLP):** Analiza el sentimiento de cada noticia (Positivo/Neutro/Negativo) usando la librería `TextBlob`.
+* **Análisis de sentimiento (NLP):** Clasifica cada titular como Positivo, Neutro o Negativo con la librería `TextBlob` (basada en léxico, no en deep learning).
 * **Data Logging:** Genera un reporte automático en formato `.csv` en la carpeta `/data` con los hallazgos del día.
 
 ## Tecnologías utilizadas
@@ -26,6 +26,21 @@ Sistema automatizado en **Python** para el seguimiento y análisis de tendencias
 2. Instala las dependencias: `pip install -r requirements.txt`
 3. Ejecuta el programa: `python main.py`
 4. Revisa el resultado en `/data`, donde se genera un `.csv` con los titulares extraídos y su sentimiento asociado.
+
+## Ejemplo de salida
+
+Extracto real de `data/reporte_diario.csv`:
+
+```csv
+noticia,sentimiento
+ClickHouse acquires Langfuse,Neutro
+The 600-year-old origins of the word 'hello',Neutro
+US electricity demand surged in 2025 – solar handled 61% of it,Neutro
+```
+
+## Limitaciones
+
+`TextBlob` está pensado para inglés y puntúa por palabras sueltas, así que la mayoría de titulares técnicos salen como *Neutro*. Está bien para un primer prototipo; el siguiente paso sería probar un modelo más fino (por ejemplo, uno de Hugging Face) y comparar resultados.
 
 ## Licencia
 
