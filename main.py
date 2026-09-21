@@ -1,3 +1,11 @@
+import os
+
+import pandas as pd
+
+from core.processor import analyze_sentiment
+from core.scraper import fetch_tech_news
+
+
 def run_engine():
     print("🚀 Iniciando NewsPulse-AI...")
     
@@ -11,10 +19,11 @@ def run_engine():
             return
         
         # 2. Procesamiento
-        print("🧠 Analizando tendencias con IA...")
+        print("🧠 Analizando el sentimiento de los titulares...")
         data = analyze_sentiment(news)
         
         # 3. Guardado
+        os.makedirs("data", exist_ok=True)
         df = pd.DataFrame(data)
         df.to_csv("data/reporte_diario.csv", index=False)
         print("✅ Reporte generado en data/reporte_diario.csv")
